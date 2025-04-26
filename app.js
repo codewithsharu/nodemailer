@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // Import the required modules
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -25,6 +27,9 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false // This can help avoid issues with self-signed certificates
     }
 });
+
+console.log('Email:', process.env.user);
+console.log('Password:', process.env.pass);
 
 // Set up a basic route
 app.get('/', (req, res) => {
