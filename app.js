@@ -1,9 +1,13 @@
 // Import the required modules
 const express = require('express');
 const nodemailer = require('nodemailer');
+const cors = require('cors'); // Import the cors module
 
 // Create an instance of Express
 const app = express();
+
+// Middleware to allow CORS
+app.use(cors()); // Use CORS middleware
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -14,8 +18,8 @@ const transporter = nodemailer.createTransport({
     port: 587, // Usually 587 for TLS
     secure: false, // true for 465, false for other ports
     auth: {
-        user: 'verificatmail231@gmail.com', // Your email
-        pass: 'zwoc wcve ibrc ixtb' // Your email password or app password
+        user: process.env.user, // Your email
+        pass: process.env.pass // Your email password or app password
     },
     tls: {
         rejectUnauthorized: false // This can help avoid issues with self-signed certificates
